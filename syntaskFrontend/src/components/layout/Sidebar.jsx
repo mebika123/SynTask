@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 function Sidebar({navOpen,setNavOpen}) {
     return (
-        <aside className={`md:w-1/5 max-sm:w-3/5 max-md:w-2/5 max-md:absolute max-md:top-0 shadow-[0_10px_15px_0_rgba(0,0,0,0.1),0_4px_6px_0_rgba(0,0,0,0.1)] h-screen flex justify-between flex-col bg-white transition-all duration-300 ease-in-out  ${navOpen ? 'left-0':'-left-full'}`}>
+        <aside className={`md:w-1/5 max-sm:w-3/5 max-md:w-2/5  fixed max-md:top-0 shadow-[0_10px_15px_0_rgba(0,0,0,0.1),0_4px_6px_0_rgba(0,0,0,0.1)] h-screen flex justify-between flex-col bg-white transition-all duration-300 ease-in-out  ${navOpen ? 'left-0':'max-md:-left-full'}`}>
             <div>
                 <div className='flex justify-between items-center px-5 py-4 border-b border-b-[#E5E7EB]'>
                 <Link to="" className="flex items-center gap-4 text-[#4F46E5] ">
