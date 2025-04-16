@@ -9,12 +9,12 @@ import './index.css'
 import Register from './routes/auth/Register.jsx';
 import Login from './routes/auth/Login.jsx';
 import Layout from './routes/Layout.jsx';
-import Project from './routes/Project.jsx';
+import Project from './routes/project/Project.jsx';
 import ProfileSetting from './routes/ProfileSetting.jsx';
-import AddTask from './routes/AddTask.jsx';
-import AddProject from './routes/AddProject.jsx';
-import TaskDetails from './routes/TaskDetails.jsx';
-import Tasks from './routes/Tasks.jsx';
+import AddTask from './routes/task/AddTask.jsx';
+import AddProject from './routes/project/AddProject.jsx';
+import TaskDetails from './routes/task/TaskDetails.jsx';
+import Tasks from './routes/task/Tasks.jsx';
 
 const router = createBrowserRouter([
   {

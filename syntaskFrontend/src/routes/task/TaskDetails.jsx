@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faClock, faFlag, faPenToSquare, faFilePdf, faDownload, faEllipsis } from '@fortawesome/free-solid-svg-icons'
 // import { faFilePdf }  from '@fortawesome/free-regular-svg-icons'
-import Button from '../components/ui/Button'
+import Button from '../../components/ui/Button'
 
 const TaskDetails = () => {
     return (

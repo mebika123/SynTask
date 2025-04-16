@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import ProjectCard from '../components/ui/cards/ProjectCard'
-import Button from '../components/ui/Button'
+import ProjectCard from '../../components/ui/cards/ProjectCard'
+import Button from '../../components/ui/Button'
 
 const Project = () => {
     return (

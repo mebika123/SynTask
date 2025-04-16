@@ -1,5 +1,5 @@
 import React from 'react'
-import ProjectCard from '../components/ui/cards/ProjectCard'
+import ProjectCard from '../../components/ui/cards/ProjectCard'
 import { Link } from 'react-router-dom'
 
 const Tasks = () => {

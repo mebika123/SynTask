@@ -20,7 +20,7 @@ const ProfileSetting = () => {
                     <div className="flex items-center mb-3 flex-wrap gap-4 ">
 
                         <div className='relative'>
-                            <img src="/bg-img.png" alt="" className='h-20 min-w-20 w-20 rounded-full' />
+                            <img src="/bg-img.png" alt="" className='h-14 min-w-14 w-14 rounded-full' />
                             <div className="w-6 h-6 text-[white] rounded-full bg-[#4F46E5] absolute bottom-0 -right-0 flex items-center justify-center">
                             <FontAwesomeIcon icon={faCamera} />
                             </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faStar,faEllipsis } from '@fortawesome/free-solid-svg-icons'
+import DropDownBtn from '../DropDownBtn'
 
 const ProjectCard = () => {
     return (
@@ -10,7 +11,7 @@ const ProjectCard = () => {
                     <span class="inline-flex items-center rounded-xl bg-[#faf2f2] px-2 mr-2 py-1 text-xs font-medium text-[#EF4444] ring-1 ring-red-600/10 ring-inset">Pending</span>
                     <FontAwesomeIcon icon={faStar} />
                 </div>
-                <FontAwesomeIcon icon={faEllipsis} />
+                <DropDownBtn/>
             </div>
             <h5>Website Redesign</h5>
             <p className="text-[#6B7280] mb-3">Complete overhaul of company website with new design system</p>
