@@ -9,9 +9,12 @@ import './index.css'
 import Register from './routes/auth/Register.jsx';
 import Login from './routes/auth/Login.jsx';
 import Layout from './routes/Layout.jsx';
-import Tasks from './routes/Tasks.jsx';
 import Project from './routes/Project.jsx';
 import ProfileSetting from './routes/ProfileSetting.jsx';
+import AddTask from './routes/AddTask.jsx';
+import AddProject from './routes/AddProject.jsx';
+import TaskDetails from './routes/TaskDetails.jsx';
+import Tasks from './routes/Tasks.jsx';
 
 const router = createBrowserRouter([
   {
@@ -35,12 +38,24 @@ const router = createBrowserRouter([
         element:<Home/>
       },
       {
-        path:"task",
+        path:"tasks",
         element:<Tasks/>
+      },
+      {
+        path:"taskDetails",
+        element:<TaskDetails/>
       },
       {
         path:"project",
         element:<Project/>
+      },
+      {
+        path:"addProject",
+        element:<AddProject/>
+      },
+      {
+        path:"addTask",
+        element:<AddTask/>
       },
       {
         path:"profileSetting",

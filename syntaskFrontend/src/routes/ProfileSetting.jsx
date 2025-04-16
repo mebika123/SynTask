@@ -17,7 +17,7 @@ const ProfileSetting = () => {
 
                 <div className="shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] bg-white border border-[#E5E7EB] rounded-sm p-3 w-full mb-4">
                     <h5 className='mb-3 font-bold'>Profile Photo</h5>
-                    <div className="flex items-center mb-3 flex-wrap gap-4">
+                    <div className="flex items-center mb-3 flex-wrap gap-4 ">
 
                         <div className='relative'>
                             <img src="/bg-img.png" alt="" className='h-20 min-w-20 w-20 rounded-full' />
@@ -25,7 +25,7 @@ const ProfileSetting = () => {
                             <FontAwesomeIcon icon={faCamera} />
                             </div>
                         </div>
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col items-start gap-2">
                             <Link to='' className='rounded-lg border border-[#E5E7EB] py-2 px-5'>+ New Task</Link>
                             <Button />
                         </div>
