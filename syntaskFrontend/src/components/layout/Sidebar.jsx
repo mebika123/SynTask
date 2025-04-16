@@ -27,7 +27,7 @@ function Sidebar({navOpen,setNavOpen}) {
 
                     </li>
                     <li>
-                        <Link className="flex gap-2 items-center mb-2 hover:bg-[#E5E7EB] transition duration-300 ease-in-out hover:text-[#4F46E5] p-2 rounded-md" to=""><FontAwesomeIcon icon={faFolder} />
+                        <Link className="flex gap-2 items-center mb-2 hover:bg-[#E5E7EB] transition duration-300 ease-in-out hover:text-[#4F46E5] p-2 rounded-md" to="project"><FontAwesomeIcon icon={faFolder} />
                             <span>Project</span></Link>
 
                     </li>
@@ -41,7 +41,7 @@ function Sidebar({navOpen,setNavOpen}) {
                     <p className="mb-2 text-xs text-[#9CA3AF]">Setting</p>
                     <ul className=''>
                         <li>
-                            <Link className="flex gap-2 items-center mb-2 hover:bg-[#E5E7EB] transition duration-300 ease-in-out hover:text-[#4F46E5] p-2 rounded-md" to=""><FontAwesomeIcon icon={faGear} />
+                            <Link className="flex gap-2 items-center mb-2 hover:bg-[#E5E7EB] transition duration-300 ease-in-out hover:text-[#4F46E5] p-2 rounded-md" to="profileSetting"><FontAwesomeIcon icon={faGear} />
                                 <span>Setting</span></Link>
 
                         </li>

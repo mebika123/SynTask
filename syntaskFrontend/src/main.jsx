@@ -11,6 +11,7 @@ import Login from './routes/auth/Login.jsx';
 import Layout from './routes/Layout.jsx';
 import Tasks from './routes/Tasks.jsx';
 import Project from './routes/Project.jsx';
+import ProfileSetting from './routes/ProfileSetting.jsx';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path:"project",
         element:<Project/>
+      },
+      {
+        path:"profileSetting",
+        element:<ProfileSetting/>
       }
     ]
   }
