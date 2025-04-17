@@ -8,7 +8,7 @@ const ProjectCard = () => {
         <div className="shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] bg-white border border-[#E5E7EB] rounded-md p-3">
             <div className="flex justify-between items-center mb-3">
                 <div>
-                    <span class="inline-flex items-center rounded-xl bg-[#faf2f2] px-2 mr-2 py-1 text-xs font-medium text-[#EF4444] ring-1 ring-red-600/10 ring-inset">Pending</span>
+                    <span className="inline-flex items-center rounded-xl bg-[#faf2f2] px-2 mr-2 py-1 text-xs font-medium text-[#EF4444] ring-1 ring-red-600/10 ring-inset">Pending</span>
                     <FontAwesomeIcon icon={faStar} />
                 </div>
                 <DropDownBtn/>

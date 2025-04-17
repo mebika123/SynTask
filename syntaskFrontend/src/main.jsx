@@ -15,6 +15,8 @@ import AddTask from './routes/task/AddTask.jsx';
 import AddProject from './routes/project/AddProject.jsx';
 import TaskDetails from './routes/task/TaskDetails.jsx';
 import Tasks from './routes/task/Tasks.jsx';
+import Index from './routes/user/index.jsx';
+import ProjectDetails from './routes/project/ProjectDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +48,10 @@ const router = createBrowserRouter([
         element:<TaskDetails/>
       },
       {
+        path:"projectDetails",
+        element:<ProjectDetails/>
+      },
+      {
         path:"project",
         element:<Project/>
       },
@@ -60,6 +66,16 @@ const router = createBrowserRouter([
       {
         path:"profileSetting",
         element:<ProfileSetting/>
+      }
+    ]
+  },
+  {
+    path: "/user",
+    element: <Layout/>,
+    children : [
+      {
+        path:"",
+        element:<Index/>
       }
     ]
   }
