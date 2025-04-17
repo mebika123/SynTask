@@ -4,7 +4,7 @@ import { faArrowLeft, faClock, faFlag, faPenToSquare, faFilePdf, faDownload, faE
 import Button from '../../components/ui/Button'
 import { Link } from 'react-router-dom'
 
-const ProjectDetails = () => {
+const AssignedProjectDetails = () => {
   return (
     <div>
 
@@ -53,15 +53,15 @@ const ProjectDetails = () => {
     <div className="shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] bg-white border border-[#E5E7EB] rounded-sm p-2 w-full mb-4">
 
 <div className="flex justify-between items-center mb-5">
-    <h5 className='font-bold'>Assigned Team Member </h5>
+    <h5 className='font-bold'>Assigned Task </h5>
     <Button />
 </div>
 <table className="table-fixed w-full">
     <thead>
         <tr className='bg-[#E5E7EB] text-sm text-[#6B7280]'>
-            <th className='py-2'>Member</th>
-            <th className='py-2'>Role</th>
-            <th className='py-2'>Task</th>
+            <th className='py-2'>Title</th>
+            <th className='py-2'>category</th>
+            <th className='py-2'>Due Date</th>
             <th className='py-2'>Status</th>
             <th className='py-2'>Action</th>
         </tr>
@@ -91,8 +91,7 @@ const ProjectDetails = () => {
             </td>
             <td className="py-2">
             <Link className="text-[#46e590] mr-3">View</Link>
-                <Link className="text-[#4F46E5] mr-3">Edit</Link>
-                <Link className="text-[#DC2626]">Remove</Link>
+                <Link className="text-[#4F46E5] mr-3">Start</Link>
             </td>
         </tr>
     </tbody>
@@ -103,4 +102,4 @@ const ProjectDetails = () => {
   )
 }
 
-export default ProjectDetails
+export default AssignedProjectDetails

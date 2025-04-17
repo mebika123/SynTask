@@ -14,9 +14,15 @@ import ProfileSetting from './routes/ProfileSetting.jsx';
 import AddTask from './routes/task/AddTask.jsx';
 import AddProject from './routes/project/AddProject.jsx';
 import TaskDetails from './routes/task/TaskDetails.jsx';
-import Tasks from './routes/task/Tasks.jsx';
-import Index from './routes/user/index.jsx';
 import ProjectDetails from './routes/project/ProjectDetails.jsx';
+import Tasks from './routes/task/Tasks.jsx';
+
+import Index from './routes/user/index.jsx';
+import AssignedProjectDetails from './routes/user/AssignedProjectDetails.jsx';
+import ProjectAssigned from './routes/user/ProjectAssigned.jsx';
+import TaskAssigned from './routes/user/TaskAssigned.jsx';
+import AssignedTaskDetails from './routes/user/AssignedTaskDetails.jsx';
+import ProjectUser from './routes/ProjectUser.jsx';
 
 const router = createBrowserRouter([
   {
@@ -64,7 +70,19 @@ const router = createBrowserRouter([
         element:<AddTask/>
       },
       {
+        path:"projectUser",
+        element:<ProjectUser/>
+      },
+      {
         path:"profileSetting",
+        element:<ProfileSetting/>
+      },
+      {
+        path:"category",
+        element:<ProfileSetting/>
+      },
+      {
+        path:"createCategory",
         element:<ProfileSetting/>
       }
     ]
@@ -76,7 +94,23 @@ const router = createBrowserRouter([
       {
         path:"",
         element:<Index/>
-      }
+      },
+      {
+        path:"project",
+        element:<ProjectAssigned/>
+      },
+      {
+        path:"projectDetails",
+        element:<AssignedProjectDetails/>
+      },
+      {
+        path:"tasks",
+        element:<TaskAssigned/>
+      },
+      {
+        path:"taskDetails",
+        element:<AssignedTaskDetails/>
+      },
     ]
   }
 ]);
