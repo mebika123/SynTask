@@ -23,7 +23,7 @@ class CategoryController extends Controller
         $category->title = $request->title;
         $category->save();
 
-        return response()->json(['message'=>'Category created successfully!'], 200);
+        return response()->json(['status' => true,'message'=>'Category created successfully!'], 200);
     }
     public function update(Request $request, $id)
     {
@@ -35,13 +35,19 @@ class CategoryController extends Controller
         $category->title = $request->title;
         $category->save();
 
-        return response()->json(['message' => "Category updated successfully!"], 200);
+        return response()->json(['status'=>true,'message' => "Category updated successfully!"], 200);
     }
     public function delete($id)
     {
         $category = Category::find($id);
         $category->delete();
 
-        return response()->json(['message' => "Category deleted successfully!"], 200);
+        return response()->json(['status' => true,'message' => "Category deleted successfully!"], 200);
+    }
+    public function show($id)
+    {
+        $category = Category::find($id);
+
+        return response()->json(['category'=>$category], 200);
     }
 }

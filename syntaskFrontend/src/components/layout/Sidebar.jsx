@@ -27,7 +27,7 @@ function Sidebar({navOpen,setNavOpen}) {
 
                     </li>
                     <li>
-                        <Link className="flex gap-2 items-center mb-2 hover:bg-[#E5E7EB] transition duration-300 ease-in-out hover:text-[#4F46E5] p-2 rounded-md" to="project"><FontAwesomeIcon icon={faFolder} />
+                        <Link className="flex gap-2 items-center mb-2 hover:bg-[#E5E7EB] transition duration-300 ease-in-out hover:text-[#4F46E5] p-2 rounded-md" to="projects"><FontAwesomeIcon icon={faFolder} />
                             <span>Project</span></Link>
 
                     </li>

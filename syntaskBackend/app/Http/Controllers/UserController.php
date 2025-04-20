@@ -20,7 +20,7 @@ class UserController extends Controller
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirm',
+            'password' => 'required|confirmed|min:8',
             'role' => 'required|in:admin,user',
 
         ]);
@@ -33,7 +33,12 @@ class UserController extends Controller
         $user->role = $request->role;
         $user->save();
 
-        return response()->json(['message' => 'User created successfully!'], 200);
+        return response()->json(['message' => 'User created successfully!','status'=>true], 200);
+    }
+    public function show($id)
+    {
+        $user = User::find($id);
+        return response()->json(['user' => $user],200);
     }
     public function update(Request $request, $id)
     {
@@ -41,7 +46,6 @@ class UserController extends Controller
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'required|confirm',
             'role' => 'required|in:admin,user',
         ]);
 
@@ -49,17 +53,20 @@ class UserController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
         $user->role = $request->role;
         $user->save();
 
-        return response()->json(['message' => 'User created successfully!'], 200);
+        return response()->json(['message' => 'User updated successfully!','status'=>true], 200);
     }
     public function delete($id)
     {
         $user = User::find($id);
+        $user->projects()->detach(); 
         $user->delete();
-
         return response()->json(['message' => "User deleted successfully!"], 200);
+    }
+    public function allUsers()
+    {
+        return response()->json(User::select('id', 'first_name', 'last_name')->get());
     }
 }

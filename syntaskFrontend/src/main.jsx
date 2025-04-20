@@ -23,93 +23,132 @@ import ProjectAssigned from './routes/user/ProjectAssigned.jsx';
 import TaskAssigned from './routes/user/TaskAssigned.jsx';
 import AssignedTaskDetails from './routes/user/AssignedTaskDetails.jsx';
 import ProjectUser from './routes/ProjectUser.jsx';
+import EditProject from './routes/project/EditProject.jsx';
+import AddUsers from './routes/users/addUsers.jsx';
+import EditUsers from './routes/users/editUsers.jsx';
+import Categories from './routes/category/Categories.jsx';
+import AddCategory from './routes/category/AddCategory.jsx';
+import EditCategory from './routes/category/EditCategory.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/register",
-    element: <Register/>,
+    element: <Register />,
   },
   {
     path: "/",
-    element: <Login/>,
+    element: <Login />,
   },
   {
     path: "/login",
-    element: <Login/>,
+    element: <Login />,
   },
   {
     path: "/dashboard",
-    element: <Layout/>,
-    children : [
+    element: <Layout />,
+    children: [
       {
-        path:"",
-        element:<Home/>
+        path: "",
+        element: <Home />
       },
       {
-        path:"tasks",
-        element:<Tasks/>
+        path: "tasks",
+        element: <Tasks />
       },
       {
-        path:"taskDetails",
-        element:<TaskDetails/>
+        path: "taskDetails",
+        element: <TaskDetails />
       },
       {
-        path:"projectDetails",
-        element:<ProjectDetails/>
+        path: "projectDetails/:id",
+        element: <ProjectDetails />
       },
       {
-        path:"project",
-        element:<Project/>
+        path: "projects",
+        element: <Project />
       },
       {
-        path:"addProject",
-        element:<AddProject/>
+        path: "addProject",
+        element: <AddProject />
       },
       {
-        path:"addTask",
-        element:<AddTask/>
+        path: "addTask",
+        element: <AddTask />
       },
       {
-        path:"projectUser",
-        element:<ProjectUser/>
+        path: "projectUser",
+        element: <ProjectUser />
       },
       {
-        path:"profileSetting",
-        element:<ProfileSetting/>
+        path: "editProject/:id",
+        element: <EditProject />
       },
       {
-        path:"category",
-        element:<ProfileSetting/>
+        path: "profileSetting",
+        element: <ProfileSetting />
       },
       {
-        path:"createCategory",
-        element:<ProfileSetting/>
+        path: "category",
+        element: <ProfileSetting />
+      },
+      {
+        path: "createCategory",
+        element: <ProfileSetting />
+      },
+      {
+        path: "addUser",
+        element: <AddUsers />
+      },
+      {
+        path: "editUser/:id",
+        element: <EditUsers />
+      },
+      {
+        path: "addUser",
+        element: <AddUsers />
+      },
+      {
+        path: "editUser/:id",
+        element: <EditUsers />
+      },
+      {
+        path: "categories",
+        element: <Categories />
+      },
+      {
+        path: "addCategory",
+        element: <AddCategory />
+      },
+      {
+        path:"editCategory/:id",
+        element:<EditCategory/>
       }
+
     ]
   },
   {
     path: "/user",
-    element: <Layout/>,
-    children : [
+    element: <Layout />,
+    children: [
       {
-        path:"",
-        element:<Index/>
+        path: "",
+        element: <Index />
       },
       {
-        path:"project",
-        element:<ProjectAssigned/>
+        path: "project",
+        element: <ProjectAssigned />
       },
       {
-        path:"projectDetails",
-        element:<AssignedProjectDetails/>
+        path: "projectDetails",
+        element: <AssignedProjectDetails />
       },
       {
-        path:"tasks",
-        element:<TaskAssigned/>
+        path: "tasks",
+        element: <TaskAssigned />
       },
       {
-        path:"taskDetails",
-        element:<AssignedTaskDetails/>
+        path: "taskDetails",
+        element: <AssignedTaskDetails />
       },
     ]
   }
@@ -117,6 +156,6 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
-    
-    </StrictMode>,
+
+  </StrictMode>,
 )

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +15,7 @@ class AuthController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed|min:8'
         ]);
 
         $user = new User();
@@ -22,14 +23,16 @@ class AuthController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
+        $user->role = 'user';
         $user->password = Hash::make($request->password);
         
         $user->save();
 
-        $token = $user->createToken($request->name);
+        $token = $user->createToken('auth_token');
 
         return response()->json([
             'status'=>true,
+            'user' => $user,
             'message'=>'User registered successfully',
             'token'=>$token->plainTextToken
         ],200);
@@ -49,7 +52,7 @@ class AuthController extends Controller
             ],404);
         }
 
-        $token = $user->createToken($user->name);
+        $token = $user->createToken($user->email.'_token');
 
         return response()->json([
             'status'=>true,
