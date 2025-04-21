@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ const EditUsers = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await axios.get(`http://localhost:8000/api/user/${id}`);
+                const res = await axios.get(`/user/${id}`);
                 const { first_name, last_name, email, role } = res.data.user;
     
                 setForm({
@@ -45,7 +45,7 @@ const EditUsers = () => {
         setError(null);
 
         try {
-            const res = await axios.put(`http://localhost:8000/api/user/update/${id}`, form);
+            const res = await axios.put(`/user/update/${id}`, form);
             if (res.data.status) {
                 navigate('/dashboard/projects')
             }

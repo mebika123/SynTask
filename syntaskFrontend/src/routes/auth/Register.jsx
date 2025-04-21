@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../axios'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -31,7 +31,7 @@ const Register = () => {
 
     try {
       // Register the user
-      const response = await axios.post('http://localhost:8000/api/register', form);
+      const response = await axios.post('/register', form);
       // Redirect or reload
       if(response.data.user.role=='admin'){
         navigate('/dashboard');

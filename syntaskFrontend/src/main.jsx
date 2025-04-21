@@ -17,18 +17,20 @@ import TaskDetails from './routes/task/TaskDetails.jsx';
 import ProjectDetails from './routes/project/ProjectDetails.jsx';
 import Tasks from './routes/task/Tasks.jsx';
 
-import Index from './routes/user/index.jsx';
+import Index from './routes/user/Index.jsx';
 import AssignedProjectDetails from './routes/user/AssignedProjectDetails.jsx';
 import ProjectAssigned from './routes/user/ProjectAssigned.jsx';
-import TaskAssigned from './routes/user/TaskAssigned.jsx';
-import AssignedTaskDetails from './routes/user/AssignedTaskDetails.jsx';
-import ProjectUser from './routes/ProjectUser.jsx';
+  import AssignedTaskDetails from './routes/user/AssignedTaskDetails.jsx';
 import EditProject from './routes/project/EditProject.jsx';
 import AddUsers from './routes/users/addUsers.jsx';
 import EditUsers from './routes/users/editUsers.jsx';
 import Categories from './routes/category/Categories.jsx';
 import AddCategory from './routes/category/AddCategory.jsx';
 import EditCategory from './routes/category/EditCategory.jsx';
+import EditTask from './routes/task/EditTask.jsx';
+import AppLayout from './routes/AppLayout.jsx';
+import { AuthProvider } from './context/AuthContext'
+
 
 const router = createBrowserRouter([
   {
@@ -56,7 +58,7 @@ const router = createBrowserRouter([
         element: <Tasks />
       },
       {
-        path: "taskDetails",
+        path: "taskDetails/:id",
         element: <TaskDetails />
       },
       {
@@ -76,9 +78,10 @@ const router = createBrowserRouter([
         element: <AddTask />
       },
       {
-        path: "projectUser",
-        element: <ProjectUser />
+        path: "editTask/:id",
+        element: <EditTask />
       },
+
       {
         path: "editProject/:id",
         element: <EditProject />
@@ -120,42 +123,43 @@ const router = createBrowserRouter([
         element: <AddCategory />
       },
       {
-        path:"editCategory/:id",
-        element:<EditCategory/>
+        path: "editCategory/:id",
+        element: <EditCategory />
       }
 
     ]
   },
   {
     path: "/user",
-    element: <Layout />,
+    element: <AppLayout />,
     children: [
       {
         path: "",
         element: <Index />
       },
       {
-        path: "project",
+        path: "projects",
         element: <ProjectAssigned />
       },
       {
-        path: "projectDetails",
+        path: "projectDetails/:id",
         element: <AssignedProjectDetails />
       },
       {
-        path: "tasks",
-        element: <TaskAssigned />
-      },
-      {
-        path: "taskDetails",
+        path: "taskDetails/:id",
         element: <AssignedTaskDetails />
       },
+      {
+        path: "profileSetting",
+        element: <ProfileSetting />
+      }
     ]
   }
 ]);
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
-
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )

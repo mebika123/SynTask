@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ProjectCard from '../../components/ui/cards/ProjectCard'
 import Button from '../../components/ui/Button'
-import axios from 'axios'
+import axios from '../../axios'
 
 const Project = () => {
     const [projects, setProjects] = useState([]);
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/projects')
+        axios.get('/projects')
             .then(res => {
                 setProjects(res.data);
             });
-        axios.get('http://localhost:8000/api/usersList')
+        axios.get('/usersList')
             .then(res => {
                 setUsers(res.data);
             });
@@ -21,7 +21,7 @@ const Project = () => {
 
     const deleteUser = async(id)=>{
         try {
-            const res = await axios.delete(`http://localhost:8000/api/user/delete/${id}`);
+            const res = await axios.delete(`/user/delete/${id}`);
             if (res.data.status) {
                 navigate('/dashboard/projects')
             }
@@ -65,7 +65,7 @@ const Project = () => {
 
                 <div className="flex justify-between items-center mb-5">
                     <h5 className='font-bold'>Team Member</h5>
-                    <Button />
+                    <Button text='New Member' path ='/dashboard/addUser' />
                 </div>
                 <div className="overflow-x-auto  w-full">
                 <table className="whitespace-nowrap w-full">

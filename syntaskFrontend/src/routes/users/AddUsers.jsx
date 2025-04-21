@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ const AddUsers = () => {
         setError(null);
 
         try {
-            const res = await axios.post('http://localhost:8000/api/user/store', form);
+            const res = await axios.post('/user/store', form);
             if (res.data.status) {
                 navigate('/dashboard/projects')
             }

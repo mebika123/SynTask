@@ -1,20 +1,21 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFolder, faGear, faHouse, faLayerGroup, faListCheck, faTags, faUser, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faFolder, faGear, faHouse, faLayerGroup, faListCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext'
 
-function Sidebar({navOpen,setNavOpen}) {
-    const {user} = useAuth();
+const AppSidebar = ({ navOpen, setNavOpen }) => {
+    const { user } = useAuth();
+
     return (
-        <aside className={`md:w-1/5 max-sm:w-3/5 max-md:w-2/5  fixed max-md:top-0 shadow-[0_10px_15px_0_rgba(0,0,0,0.1),0_4px_6px_0_rgba(0,0,0,0.1)] h-screen flex justify-between flex-col bg-white transition-all duration-300 ease-in-out  ${navOpen ? 'left-0':'max-md:-left-full'}`}>
+        <aside className={`md:w-1/5 max-sm:w-3/5 max-md:w-2/5  fixed max-md:top-0 shadow-[0_10px_15px_0_rgba(0,0,0,0.1),0_4px_6px_0_rgba(0,0,0,0.1)] h-screen flex justify-between flex-col bg-white transition-all duration-300 ease-in-out  ${navOpen ? 'left-0' : 'max-md:-left-full'}`}>
             <div>
                 <div className='flex justify-between items-center px-5 py-4 border-b border-b-[#E5E7EB]'>
-                <Link to="" className="flex items-center gap-4 text-[#4F46E5] ">
-                    <FontAwesomeIcon icon={faLayerGroup} />
-                    <h4 className="text-lg font-bold">SynTask</h4>
-                </Link>
-                    <FontAwesomeIcon icon={faXmark} className='text-[#4F46E5] md:hidden' onClick={()=>setNavOpen(!navOpen)}/>
+                    <Link to="" className="flex items-center gap-4 text-[#4F46E5] ">
+                        <FontAwesomeIcon icon={faLayerGroup} />
+                        <h4 className="text-lg font-bold">SynTask</h4>
+                    </Link>
+                    <FontAwesomeIcon icon={faXmark} className='text-[#4F46E5] md:hidden' onClick={() => setNavOpen(!navOpen)} />
 
                 </div>
                 <ul className='px-5 mt-5'>
@@ -29,15 +30,11 @@ function Sidebar({navOpen,setNavOpen}) {
 
                     </li>
                     <li>
-                        <Link className="flex gap-2 items-center mb-2 hover:bg-[#E5E7EB] transition duration-300 ease-in-out hover:text-[#4F46E5] p-2 rounded-md" to="projects" ><FontAwesomeIcon icon={faFolder} />
+                        <Link className="flex gap-2 items-center mb-2 hover:bg-[#E5E7EB] transition duration-300 ease-in-out hover:text-[#4F46E5] p-2 rounded-md" to="projects"><FontAwesomeIcon icon={faFolder} />
                             <span>Project</span></Link>
 
                     </li>
-                    <li>
-                        <Link className="flex gap-2 items-center mb-2 hover:bg-[#E5E7EB] transition duration-300 ease-in-out hover:text-[#4F46E5] p-2 rounded-md" to="categories"><FontAwesomeIcon icon={faTags} />
-                            <span>Tag</span></Link>
 
-                    </li>
                 </ul>
                 <div className="px-5">
                     <p className="mb-2 text-xs text-[#9CA3AF]">Setting</p>
@@ -47,11 +44,6 @@ function Sidebar({navOpen,setNavOpen}) {
                                 <span>Setting</span></Link>
 
                         </li>
-                        {/* <li>
-                            <Link className="flex gap-2 items-center mb-2 hover:bg-[#E5E7EB] transition duration-300 ease-in-out hover:text-[#4F46E5] p-2 rounded-md" to=""><FontAwesomeIcon icon={faUser} />
-                                <span>Profile</span></Link>
-
-                        </li> */}
                     </ul>
 
                 </div>
@@ -62,8 +54,8 @@ function Sidebar({navOpen,setNavOpen}) {
                         <img src="/bg-img.png" alt="" className='h-10 min-w-10 w-10 rounded-full' />
                     </div>
                     <div>
-                    <span className='font-semibold'>{user.first_name+' '+user.last_name}</span>
-                    <p>{user.email}</p>
+                        <span className='font-semibold'>{user.first_name+' '+user.last_name}</span>
+                        <p>{user.email}</p>
                     </div>
                 </Link>
             </div>
@@ -71,4 +63,4 @@ function Sidebar({navOpen,setNavOpen}) {
     )
 }
 
-export default Sidebar
+export default AppSidebar

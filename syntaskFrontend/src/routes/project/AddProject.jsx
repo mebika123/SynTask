@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import axios from '../../axios'
 import { useNavigate } from 'react-router-dom';
 
 const AddProject = () => {
@@ -24,7 +24,7 @@ const AddProject = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/users');
+        const res = await axios.get('/users');
         setUsers(res.data);
       } catch (err) {
         
@@ -57,7 +57,7 @@ const AddProject = () => {
     setSuccess(null);
 
     try {
-      const res = await axios.post('http://localhost:8000/api/project/store', form);
+      const res = await axios.post('/project/store', form);
       if(res.data.status){
         navigate('/dashboard/projects')
       }

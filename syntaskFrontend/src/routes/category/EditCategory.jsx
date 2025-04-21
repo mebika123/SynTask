@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../axios'
 
 const EditCategory = () => {
   const { id } = useParams();
@@ -19,12 +19,9 @@ const EditCategory = () => {
 
   // Fetch category by ID
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/category/${id}`)
+    axios.get(`/category/${id}`)
       .then(res => {
-        const { title} = res.data.category;
-        setForm({
-          title
-        });
+        setForm(res.data.category);
       })
       .catch(err => {
         console.error('Failed to fetch category:', err);
@@ -45,7 +42,7 @@ const EditCategory = () => {
     setSuccess(null);
 
     try {
-      const res = await axios.put(`http://localhost:8000/api/category/update/${id}`, form);
+      const res = await axios.put(`/category/update/${id}`, form);
       if (res.data.status) {
         navigate('/dashboard/categories');
       }

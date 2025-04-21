@@ -12,14 +12,34 @@ class ProjectController extends Controller
     public function index()
     {
         $user = Auth::user();
-        // if($user->role == 'admin'){
-        $projects = Project::all();
-        // }
-        // else {
-        //     $projects = $user->projects()->get();
-        // }
+
+        // Base query for projects, with two counts:
+        //  - tasks_count: total tasks
+        //  - completed_tasks_count: tasks where status = 'completed'
+        $projectQuery = Project::withCount([
+            'tasks as tasks_count',
+            'tasks as completed_tasks_count' => function ($q) {
+                $q->where('status', 'completed');
+            }
+        ]);
+
+        // If not admin, scope down to only the user’s projects:
+        if ($user->role !== 'admin') {
+            // Assumes User model has projects() relationship defined as belongsToMany
+            $projectQuery = $user->projects()
+                ->withCount([
+                    'tasks as tasks_count',
+                    'tasks as completed_tasks_count' => function ($q) {
+                        $q->where('status', 'completed');
+                    }
+                ]);
+        }
+
+        $projects = $projectQuery->get();
+
         return response()->json($projects);
     }
+
 
     public function store(Request $request)
     {
@@ -45,9 +65,20 @@ class ProjectController extends Controller
 
     public function show($id)
     {
-        $project = Project::with('users')->find($id);
+        $project = Project::with('users')
+            ->withCount([
+                // total tasks
+                'tasks as tasks_count',
+                // only completed tasks
+                'tasks as completed_tasks_count' => function ($q) {
+                    $q->where('status', 'completed');
+                },
+            ])
+            ->findOrFail($id);
+    
         return response()->json(['project' => $project], 200);
     }
+    
 
     public function update(Request $request, $id)
     {
@@ -89,5 +120,36 @@ class ProjectController extends Controller
         $project->users()->detach($userId);
 
         return response()->json(['message' => 'User removed from project successfully.'], 200);
+    }
+    public function updateStatus(Request $request)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,active,completed',
+            'project_id' => 'required'
+        ]);
+    
+        $project = Project::findOrFail($request->project_id);
+    
+        if ($request->status === 'active' && $project->status !== 'pending') {
+            return response()->json([
+                'status' => false,
+                'message' => 'Only pending projects can be started.'
+            ], 422);
+        }
+    
+        if ($request->status === 'completed' && $project->status !== 'active') {
+            return response()->json([
+                'status' => false,
+                'message' => 'Only active projects can be completed.'
+            ], 422);
+        }
+    
+        $project->status = $request->status;
+        $project->save();
+    
+        return response()->json([
+            'status' => true,
+            'message' => 'project status updated successfully!'
+        ]);
     }
 }

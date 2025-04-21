@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -33,12 +34,12 @@ class UserController extends Controller
         $user->role = $request->role;
         $user->save();
 
-        return response()->json(['message' => 'User created successfully!','status'=>true], 200);
+        return response()->json(['message' => 'User created successfully!', 'status' => true], 200);
     }
     public function show($id)
     {
         $user = User::find($id);
-        return response()->json(['user' => $user],200);
+        return response()->json(['user' => $user], 200);
     }
     public function update(Request $request, $id)
     {
@@ -56,17 +57,49 @@ class UserController extends Controller
         $user->role = $request->role;
         $user->save();
 
-        return response()->json(['message' => 'User updated successfully!','status'=>true], 200);
+        return response()->json(['message' => 'User updated successfully!', 'status' => true], 200);
     }
     public function delete($id)
     {
         $user = User::find($id);
-        $user->projects()->detach(); 
+        $user->projects()->detach();
         $user->delete();
         return response()->json(['message' => "User deleted successfully!"], 200);
     }
     public function allUsers()
     {
         return response()->json(User::select('id', 'first_name', 'last_name')->get());
+    }
+    public function userInfoUpdate(Request $request)
+    {
+        $userId = Auth::user()->id;
+        $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $userId,
+        ]);
+        $user = User::find($userId);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->save();
+        return response()->json(['message' => 'User updated successfully!', 'status' => true], 200);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $userId = Auth::user()->id;
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|confirmed|min:8'
+        ]);
+        $user = User::find($userId);
+        if (!$user || !Hash::check($request->old_password, $user->password)) {
+            return response()->json(['message' => 'Error updating  password!', 'status' => false], 404);
+        }
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return response()->json(['message' => 'Password updated successfully!', 'status' => true], 200);
     }
 }

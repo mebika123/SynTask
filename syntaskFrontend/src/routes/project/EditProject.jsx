@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../axios'
 
 const EditProject = () => {
   const { id } = useParams();
@@ -18,12 +18,12 @@ const EditProject = () => {
 
   useEffect(() => {
     // Fetch all users
-    axios.get('http://localhost:8000/api/users')
+    axios.get('/users')
       .then(res => setUsers(res.data))
       .catch(err => console.error(err));
 
     // Fetch project details
-    axios.get(`http://localhost:8000/api/project/${id}`)
+    axios.get(`/project/${id}`)
       .then(res => {
         const { title, description, users } = res.data.project;
         setForm({
@@ -58,7 +58,7 @@ const EditProject = () => {
     setSuccess(null);
 
     try {
-      await axios.put(`http://localhost:8000/api/project/update/${id}`, form);
+      await axios.put(`/project/update/${id}`, form);
       setSuccess('Project updated successfully!');
       navigate('/dashboard/projects'); // Navigate to project list or detail view
     } catch (err) {

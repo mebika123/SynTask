@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Button from '../../components/ui/Button';
-import axios from 'axios';
+import axios from '../../axios'
 import { Link } from 'react-router-dom';
 
 const Categories = () => {
@@ -8,7 +8,7 @@ const Categories = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/categories')
+        axios.get('/categories')
             .then(res => {
                 setCategories(res.data);
             });
@@ -16,7 +16,7 @@ const Categories = () => {
 
     const deleteCategory = async(id)=>{
         try {
-            const res = await axios.delete(`http://localhost:8000/api/category/delete/${id}`);
+            const res = await axios.delete(`/category/delete/${id}`);
             
             if (res.data.status) {
                 setCategories(prev => prev.filter(category => category.id !== id));
@@ -36,7 +36,7 @@ const Categories = () => {
 
                 <div className="flex justify-between items-center mb-5">
                     <h5 className='font-bold'>Categories List</h5>
-                    <Button />
+                    <Button text={'New Category'} path ='/dashboard/addCategory'/>
                 </div>
                 <div className="overflow-x-auto  w-full">
                 <table className="whitespace-nowrap w-full">

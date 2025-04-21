@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../axios'
+import Cookies from 'js-cookie'
+import { useAuth } from '../../context/AuthContext'
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' })
   const [error, setError] = useState(null)
   const navigate = useNavigate()
+  const {login} = useAuth()
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -17,12 +20,15 @@ const Login = () => {
 
     try {
 
-      const res = await axios.post('http://localhost:8000/api/login', form)
+      const res = await axios.post('/login', form)
 
-      const role = res.data.user.role
+
+      const { user, token } = res.data
+
+      login(user,token)
 
       // 🔁 Role-based redirection
-      if (role === 'admin') {
+      if (user.role === 'admin') {
         navigate('/dashboard')
       } else {
         navigate('/user')
